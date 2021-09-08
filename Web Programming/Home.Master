@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.Master.cs" Inherits="Web_Programming.Site1" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Sách Online</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        #Shop {
+            width: 900px;
+            margin-left: 283px;
+        }
+    </style>
+</head>
+<body>
+    <link href="Theme/Default.css" rel="stylesheet" />
+    <form id="form1" runat="server">
+<header>
+    <h1><a href ="MenuTacPham.aspx">SÁCH ONLINE</a></h1>
+    <div class="dn">
+        <%  if ((Boolean)Session["admin"] == false)
+            {
+        %>
+               <p><a href="Login.aspx">Đăng nhập</a>
+               &nbsp;<a href="Register.aspx">Đăng ký</a></p>
+        <% 
+            }
+            else
+            {
+        %>
+        	<p><a href="Logout.aspx">Thoát </a>
+            &nbsp;<a href="Edit.aspx">Chỉnh sửa</a></p>
+        <%} %>
+     </div>
+</header>
+<div id="Menu">
+    <ul>
+        <li><a href="MenuTacPham.aspx">Trang chủ</a></li>
+        <li class="dropdown">
+            <a class="dropbtn">Thư Viện</a>
+            <div class="dropdown-content">
+                <asp:Repeater ID="rpThuVien" runat="server">
+                    <ItemTemplate>
+                        <a href="ThuVien.aspx?malv=<%# Eval("MaLV") %>"><%# Eval("LinhVuc") %></a>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </li>
+        <li><a href="MenuTacGia.aspx">Tác Giả</a></li>
+        <li class="dropdown">
+            <a class="dropbtn">Review Sách</a>
+            <div class="dropdown-content">
+                <asp:Repeater ID="rpTheLoai" runat="server">
+                    <ItemTemplate>
+                        <a href="TheLoai.aspx?maloai=<%# Eval("MaLoai") %>"><%# Eval("TenLoai") %></a>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </li>
+        <li><a href="TruyenCuoi.aspx">Truyện cười</a></li>
+    </ul>
+</div>
+<div id="maincontent">
+    <div id="content">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+</div>
+<div id="Shop">
+    <a href="https://www.fahasa.com/">
+        <img class="logo" src="./Images/mua-sach-tren-fahasa.png"/>
+    </a>
+    <a href="https://tiki.vn/">
+        <img class="logo" src="./Images/mua-sach-tren-tiki.png"/>
+    </a>
+    <a href="https://shopee.vn/">
+        <img class="logo" src="./Images/mua-sach-tren-shopee.png"/>
+    </a>
+    <a href="https://www.vinabook.com/">
+        <img class="logo" src="./Images/mua-sach-tren-vinabook.png"/>
+    </a>
+</div>
+<div class="container" id="container">
+    <div id="fleft">
+        <p4>Tác giả nổi bật</p4>
+        <ul>
+            <asp:Repeater ID="rpfooterleft" runat="server">
+                <ItemTemplate>
+                    <li>
+                        <a href ="ChiTietTG.aspx?matg=<%# Eval("MaTG") %>"><%# Eval("TenTG") %></a>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
+        </ul>
+    </div>
+    <div id="fright">
+        <p4>Tác phẩm nổi bật</p4>
+        <ul>
+            <asp:Repeater ID="rpfooterright" runat="server">
+                <ItemTemplate>
+                    <li>
+                        <a href ="ChiTietTP.aspx?matp=<%# Eval("MaTP") %>"><%# Eval("TenTP") %></a>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
+        </ul>
+    </div>
+</div>
+<div class="footer">
+    <p2>Copyright ©2021  - All right reserved | Sách Online </p2>
+</div>
+</form>
+</body>
+</html>

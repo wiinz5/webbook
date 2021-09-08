@@ -1,0 +1,178 @@
+﻿body {
+}
+
+/* Phần header */
+header {
+    background-color: slategrey;
+    height: 90px;
+}
+
+    header h1 {
+        padding: 20px 0px 0px 50px;
+        margin-left: 40px;
+    }
+
+    header a {
+        font-family: Verdana, Geneva, sans-serif, cursive;
+        color: #EEB422;
+        font-size: 50px;
+        letter-spacing: -2px;
+        text-shadow: 0px 1px 1px rgba(255,255,255,0.6);
+        text-decoration: none;
+    }
+
+        header a:hover {
+            color: White;
+        }
+
+
+/* Phần đăng nhập đăng ký */
+.dn p { /*Start sign*/
+    margin-left: 90%;
+    margin-top: -50px;
+    text-decoration: none;
+}
+
+    .dn p a {
+        font-size: 13px;
+        font-weight: bold;
+        color: white;
+    }
+
+        .dn p a:hover {
+            color: black;
+        }
+
+/* Phần Thanh điều hướng */
+#Menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #EEB422;
+    border-top: 2px solid #ce3e6e;
+}
+
+#Menu li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+    li a:hover, .dropdown:hover .dropbtn {
+        background-color: #ce3e6e;
+        color: white;
+    }
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFC125;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ce3e6e;
+            color: white;
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.Shop {
+    height: 50px;
+    margin-left: 20%;
+}
+
+/*Phần footer*/
+.container {
+    width: 100%;
+    height: auto;
+    background-color: slategrey;
+    border-top: 2px solid #ce3e6e;
+}
+
+.footer {
+    background-color: #E6E6E6;
+    height: 60px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+p2 {
+    font-size: 20px;
+    color: black;
+}
+
+p4 {
+    padding: 20px 0px 20px 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #EEB422;
+}
+
+#container {
+    overflow: auto;
+}
+
+#fleft {
+    float: left;
+    margin: 2% 0px 0px 25%;
+    width: 30%;
+}
+
+    #fleft li {
+        overflow: hidden;
+        text-align: left;
+    }
+
+    #fleft a {
+        color: white;
+    }
+
+        #fleft a:hover {
+            color: #EEB422;
+            background-color: slategrey;
+        }
+
+#fright {
+    width: 30%;
+    margin: 2% 15% 0px 0px;
+    float: right;
+}
+
+    #fright li {
+        overflow: hidden;
+    }
+
+    #fright a {
+        color: white;
+    }
+
+        #fright a:hover {
+            color: #EEB422;
+            background-color: slategrey;
+        }

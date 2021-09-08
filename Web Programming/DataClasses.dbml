@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLKS" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=QLKS;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLKSConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DangNhap" Member="DangNhaps">
+    <Type Name="DangNhap">
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThuVien" Member="ThuViens">
+    <Type Name="ThuVien">
+      <Column Name="LinhVuc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ThuVien_TacPham" Member="TacPhams" ThisKey="MaLV" OtherKey="MaLV" Type="TacPham" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Review" Member="Reviews">
+    <Type Name="Review">
+      <Column Name="MaSach" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSach" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungRv" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhRv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="TheLoai_Review" Member="TheLoai" ThisKey="MaLoai" OtherKey="MaLoai" Type="TheLoai" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TacGia" Member="TacGias">
+    <Type Name="TacGia">
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TacGia_TacPham" Member="TacPhams" ThisKey="MaTG" OtherKey="MaTG" Type="TacPham" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TacPham" Member="TacPhams">
+    <Type Name="TacPham">
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungTP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayDang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="ThuVien_TacPham" Member="ThuVien" ThisKey="MaLV" OtherKey="MaLV" Type="ThuVien" IsForeignKey="true" />
+      <Association Name="TacGia_TacPham" Member="TacGia" ThisKey="MaTG" OtherKey="MaTG" Type="TacGia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TheLoai" Member="TheLoais">
+    <Type Name="TheLoai">
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TheLoai_Review" Member="Reviews" ThisKey="MaLoai" OtherKey="MaLoai" Type="Review" />
+    </Type>
+  </Table>
+  <Function Name="dbo.DangNhap_Check" Method="DangNhap_Check">
+    <Parameter Name="uname" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="pass" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="DangNhap_CheckResult">
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ThuVien_Update" Method="ThuVien_Update">
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LinhVuc" Parameter="linhVuc" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.DangNhap_Exist" Method="DangNhap_Exist">
+    <Parameter Name="uname" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="DangNhap_ExistResult">
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PassWord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.DangNhap_Insert" Method="DangNhap_Insert">
+    <Parameter Name="uname" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="pass" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="hoten" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="email" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Review_Delete" Method="Review_Delete">
+    <Parameter Name="MaSach" Parameter="maSach" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Review_Insert" Method="Review_Insert">
+    <Parameter Name="MaSach" Parameter="maSach" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenSach" Parameter="tenSach" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Maloai" Parameter="maloai" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MoTa" Parameter="moTa" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="NoiDungRv" Parameter="noiDungRv" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="HinhRv" Parameter="hinhRv" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Review_SelectAll" Method="Review_SelectAll">
+    <ElementType Name="Review_SelectAllResult">
+      <Column Name="MaSach" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenSach" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungRv" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhRv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Review_Update" Method="Review_Update">
+    <Parameter Name="MaSach" Parameter="maSach" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenSach" Parameter="tenSach" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Maloai" Parameter="maloai" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MoTa" Parameter="moTa" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="NoiDungRv" Parameter="noiDungRv" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="HinhRv" Parameter="hinhRv" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TacGia_Delete" Method="TacGia_Delete">
+    <Parameter Name="MaTG" Parameter="maTG" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TacGia_Insert" Method="TacGia_Insert">
+    <Parameter Name="MaTG" Parameter="maTG" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenTG" Parameter="tenTG" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NoiDung" Parameter="noiDung" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="HinhAnh" Parameter="hinhAnh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NamSinh" Parameter="namSinh" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TacGia_SelectAll" Method="TacGia_SelectAll">
+    <ElementType Name="TacGia_SelectAllResult">
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacGia_SelectMaTG" Method="TacGia_SelectMaTG">
+    <Parameter Name="MaTG" Parameter="maTG" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TacGia_SelectMaTGResult">
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacGia_SelectMaTP" Method="TacGia_SelectMaTP">
+    <Parameter Name="MaTP" Parameter="maTP" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TacGia_SelectMaTPResult">
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungTP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayDang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacGia_SelectRanDom" Method="TacGia_SelectRanDom">
+    <ElementType Name="TacGia_SelectRanDomResult">
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacGia_SelNamePic" Method="TacGia_SelNamePic">
+    <ElementType Name="TacGia_SelNamePicResult">
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacGia_Update" Method="TacGia_Update">
+    <Parameter Name="MaTG" Parameter="maTG" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenTG" Parameter="tenTG" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NoiDung" Parameter="noiDung" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="HinhAnh" Parameter="hinhAnh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NamSinh" Parameter="namSinh" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TacPham_Delete" Method="TacPham_Delete">
+    <Parameter Name="MaTP" Parameter="maTP" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TacPham_Insert" Method="TacPham_Insert">
+    <Parameter Name="MaTP" Parameter="maTP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenTP" Parameter="tenTP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MaTG" Parameter="maTG" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NamSX" Parameter="namSX" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NoiDungTP" Parameter="noiDungTP" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="HinhTP" Parameter="hinhTP" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TacPham_SelectAll" Method="TacPham_SelectAll">
+    <ElementType Name="TacPham_SelectAllResult">
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungTP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayDang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacPham_SelectMaTP" Method="TacPham_SelectMaTP">
+    <Parameter Name="MaTP" Parameter="maTP" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TacPham_SelectMaTPResult">
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungTP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayDang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacPham_SelectRanDom" Method="TacPham_SelectRanDom">
+    <Parameter Name="MaTP" Parameter="maTP" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TacPham_SelectRanDomResult">
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungTP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayDang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacPham_SelectThuVien" Method="TacPham_SelectThuVien">
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TacPham_SelectThuVienResult">
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungTP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayDang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacPham_SelectTP" Method="TacPham_SelectTP">
+    <Parameter Name="MaTG" Parameter="maTG" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TacPham_SelectTPResult">
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacPham_SelNamePic" Method="TacPham_SelNamePic">
+    <ElementType Name="TacPham_SelNamePicResult">
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TacPham_Update" Method="TacPham_Update">
+    <Parameter Name="MaTP" Parameter="maTP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenTP" Parameter="tenTP" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MaTG" Parameter="maTG" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NamSX" Parameter="namSX" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NoiDungTP" Parameter="noiDungTP" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="HinhTP" Parameter="hinhTP" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TheLoai_Delete" Method="TheLoai_Delete">
+    <Parameter Name="MaTL" Parameter="maTL" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TheLoai_Insert" Method="TheLoai_Insert">
+    <Parameter Name="MaLoai" Parameter="maLoai" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenLoai" Parameter="tenLoai" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.TheLoai_SelectAll" Method="TheLoai_SelectAll">
+    <ElementType Name="TheLoai_SelectAllResult">
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TheLoai_Update" Method="TheLoai_Update">
+    <Parameter Name="MaTL" Parameter="maTL" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TenTL" Parameter="tenTL" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ThuVien_Delete" Method="ThuVien_Delete">
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ThuVien_Insert" Method="ThuVien_Insert">
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LinhVuc" Parameter="linhVuc" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ThuVien_SelectAll" Method="ThuVien_SelectAll">
+    <ElementType Name="ThuVien_SelectAllResult">
+      <Column Name="LinhVuc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ThuVien_SelectMaLV" Method="ThuVien_SelectMaLV">
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ThuVien_SelectMaLVResult">
+      <Column Name="LinhVuc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ThuVien_SelectRanDom" Method="ThuVien_SelectRanDom">
+    <ElementType Name="ThuVien_SelectRanDomResult">
+      <Column Name="LinhVuc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ThuVien_SelectTPLV" Method="ThuVien_SelectTPLV">
+    <Parameter Name="MaLV" Parameter="maLV" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ThuVien_SelectTPLVResult">
+      <Column Name="LinhVuc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MaTG" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaTG1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLV1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NamSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungTP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayDang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HinhTP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Review_SelNamePic" Method="Review_SelNamePic">
+    <ElementType Name="Review_SelNamePicResult">
+      <Column Name="MaSach" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenSach" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhRv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Review_SelectRanDom" Method="Review_SelectRanDom">
+    <Parameter Name="MaSach" Parameter="maSach" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Review_SelectRanDomResult">
+      <Column Name="MaSach" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenSach" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungRv" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhRv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Review_SelectMaTP" Method="Review_SelectMaTP">
+    <Parameter Name="MaSach" Parameter="maSach" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Review_SelectMaTPResult">
+      <Column Name="MaSach" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenSach" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungRv" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhRv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TheLoai_SelectSTL" Method="TheLoai_SelectSTL">
+    <Parameter Name="MaLoai" Parameter="maLoai" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TheLoai_SelectSTLResult">
+      <Column Name="MaSach" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenSach" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDungRv" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HinhRv" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaLoai1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TheLoai_SelectMaTL" Method="TheLoai_SelectMaTL">
+    <Parameter Name="MaTL" Parameter="maTL" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="TheLoai_SelectMaTLResult">
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataClasses">
+  <DataContextMoniker Name="/DataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="b41514a2-0d00-469e-adf8-a7c6de69097f" absoluteBounds="6.75, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataClassesDataContext/DangNhap" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e9b38457-cedb-43f4-9131-b90a7d970264" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="42098506-344b-4128-bd75-7d6326019458" absoluteBounds="0.75, 1.5, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DataClassesDataContext/ThuVien" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0d74ac56-2d62-43a8-8201-fc81fffc7bdd" absoluteBounds="0.765, 1.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="41a0fc81-e554-424d-9720-c2c3cf212c35" absoluteBounds="6.5, 4.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/DataClassesDataContext/Review" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f82203b9-a56a-41fd-8d2b-841f560726b9" absoluteBounds="6.515, 5.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="430b0b57-088d-41cc-83bc-720bfe73a57d" absoluteBounds="0.75, 5.25, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/DataClassesDataContext/TacGia" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb75b7a5-051d-45ad-9e03-95bae7766575" absoluteBounds="0.765, 5.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0a412dbe-fe76-4106-88b7-5d4b1e805105" absoluteBounds="3.5, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DataClassesDataContext/TacPham" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6bc7ae3-8fcb-4638-9bd7-996c404c56d7" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="87499801-5e29-4575-9610-653a0fbeb27b" absoluteBounds="3.75, 5.25, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/DataClassesDataContext/TheLoai" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eff552f7-c882-4abf-aa02-09d627b5d75d" absoluteBounds="3.765, 5.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.09699625651042); (3.5 : 2.09699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/ThuVien/ThuVien_TacPham" />
+      <nodes>
+        <classShapeMoniker Id="42098506-344b-4128-bd75-7d6326019458" />
+        <classShapeMoniker Id="0a412dbe-fe76-4106-88b7-5d4b1e805105" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.76369466145833); (3.59375 : 6.76369466145833); (3.59375 : 3.34780110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/TacGia/TacGia_TacPham" />
+      <nodes>
+        <classShapeMoniker Id="430b0b57-088d-41cc-83bc-720bfe73a57d" />
+        <classShapeMoniker Id="0a412dbe-fe76-4106-88b7-5d4b1e805105" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 5.84699625651042); (6.5 : 5.84699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/TheLoai/TheLoai_Review" />
+      <nodes>
+        <classShapeMoniker Id="87499801-5e29-4575-9610-653a0fbeb27b" />
+        <classShapeMoniker Id="41a0fc81-e554-424d-9720-c2c3cf212c35" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

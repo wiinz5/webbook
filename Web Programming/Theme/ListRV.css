@@ -1,0 +1,43 @@
+﻿.ListRv ul {
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    margin-left: 7%;
+    display: inline-block;
+    width: 70%;
+}
+
+.rightRv {
+    margin-left: 2%;
+}
+
+.leftRv {
+    float: left;
+}
+
+.ListRv li a, .hrefRv {
+    color: black;
+    overflow: hidden;
+    vertical-align: text-top;
+}
+
+    .ListRv li a:hover, .hrefRv {
+        background-color: white;
+        color: aqua;
+    }
+
+.ListRv li p {
+    color: black;
+    padding-left:22%;
+    font-size: 20px;
+}
+
+.ListRv li #MoTa {
+    color: black;
+    font-size: 15px;
+    padding: 3px;
+}
+
+.List li a#TenTG:hover {
+    color: aqua;
+}

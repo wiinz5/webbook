@@ -1,0 +1,39 @@
+﻿.Content{
+    background-color: white;
+    color: black;
+    width:70%;
+    font-size: 20px;
+    margin-top: 4%;
+    margin-left: 7%;
+}
+
+.Profile {
+    width : 70%;
+    display: inline-block;
+}
+        .right a {
+            margin: 1% 0px 0px 5%;
+            color: black;
+            font-weight: bold;
+            text-decoration: none;
+        }
+            .right a:hover {
+                color:aqua;
+            }
+    .left {
+        float: left;
+     }
+
+.Content p2 {
+    font-weight:bold;
+}
+
+    #List a {
+        background-color: white;
+        color: blue;
+        font-size: 17px;
+    }
+
+    #List a:hover {
+        color: aqua;
+    }
